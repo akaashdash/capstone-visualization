@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Qwen3-Embedding-0.6B SAE – Layer 27, Feature 4</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #020617;
+      --card-bg: #020617;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      background: radial-gradient(circle at top left, #0f172a 0, #020617 55%);
+      color: var(--text);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    h1 {
+      font-size: 24px;
+      margin: 0 0 8px;
+      letter-spacing: 0.03em;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .card {
+      background: radial-gradient(circle at 15% 0, #111827 0, #020617 50%);
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 18px 20px 20px;
+      max-width: 840px;
+      margin: 0 auto;
+      box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 11px;
+    }
+    .pill {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 4px 9px;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.8);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+    .stat {
+      padding: 10px 10px 9px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(30, 64, 175, 0.45);
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .stat-value {
+      font-size: 15px;
+      font-variant-numeric: tabular-nums;
+    }
+    .block-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin: 18px 0 6px;
+    }
+    .explanation {
+      font-size: 14px;
+      line-height: 1.6;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 10px;
+      border: 1px solid rgba(30, 64, 175, 0.5);
+      padding: 10px 11px;
+      white-space: pre-wrap;
+    }
+    .tokens {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 13px;
+    }
+    .token-pill {
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .token-pill span.weight {
+      color: var(--muted);
+      margin-left: 4px;
+      font-size: 11px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      margin-bottom: 14px;
+      text-decoration: none;
+    }
+    .back-link svg {
+      width: 14px;
+      height: 14px;
+    }
+    </style>
+</head>
+<body>
+  <div class="card">
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 20 20" fill="none">
+        <path d="M11.5 4L6 9.5L11.5 15"
+          stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span>Back to heatmap</span>
+    </a>
+    <h1>Layer 27, Feature 4</h1>
+    <div class="subtitle">
+      Sparse autoencoder feature for layer 27 in Qwen3-Embedding-0.6B SAE.
+      Scores come from detection and fuzzing runs over sampled contexts.
+    </div>
+    <div class="pill-row">
+      <div class="pill">Layer 27</div>
+      <div class="pill">Feature slot 4</div>
+      <div class="pill">Heatmap score: 0.000</div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-label">Detection accuracy</div>
+        <div class="stat-value">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Fuzz accuracy</div>
+        <div class="stat-value">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Accuracy gap (det − fuzz)</div>
+        <div class="stat-value">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mean activation</div>
+        <div class="stat-value">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Activation rate (det)</div>
+        <div class="stat-value">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Activation rate (fuzz)</div>
+        <div class="stat-value">—</div>
+      </div>
+    </div>
+
+    <div class="block-title">Auto-generated explanation</div>
+    <div class="explanation">&quot;The text exhibits patterns of common idioms, morphological endings such as &#x27;er&#x27;, nouns denoting containers, and specific grammatical and lexical elements like conjunctions, articles, and verb forms.&quot;</div>
+
+    <div class="block-title">Top tokens by activation</div>
+    <div class="tokens">
+      <span style="font-size:13px;color:var(--muted);">No high-activation tokens recorded.</span>
+    </div>
+  </div>
+</body>
+</html>
