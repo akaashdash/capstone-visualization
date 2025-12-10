@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Qwen Embedding Visualization</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+</head>
+<body>
+  <div id="top-overlay">
+    <h1>Qwen Embedding Visualization</h1>
+    <p id="overlay-text">Click a cell in the heatmap to view that feature's explanation and examples.</p>
+    <ul id="example-list"></ul>
+    <div id="desktop-notice">Best viewed on a laptop / desktop.</div>
+  </div>
+  <div id="top-heatmap"></div>
+
+  <script>
+    fetch("data/dashboard.json")
+      .then(resp => resp.json())
+      .then(data => {
+        const heatmap = data.heatmap;
+        const z = heatmap.matrix;
+        if (!z.length) {
+          document.getElementById("overlay-text").textContent = "No features found in results.";
+          return;
+        }
+
+        const x = Array.from({length: heatmap.n_latents}, (_, i) => "latent " + i);
+        const y = heatmap.layers.map(l => "layer " + l);
+
+        const trace = {
+          z: z,
+          x: x,
+          y: y,
+          type: "heatmap",
+          colorscale: "Viridis",
+          hovertemplate: "layer %{y}, %{x}<extra></extra>"
+        };
+        const layout = {
+          margin: {l: 80, r: 20, t: 20, b: 80},
+          xaxis: {title: "Latent index"},
+          yaxis: {title: "Layer", autorange: "reversed"}
+        };
+        Plotly.newPlot("top-heatmap", [trace], layout, {responsive: true});
+
+        const featureByKey = {};
+        for (const feat of data.features) {
+          featureByKey[feat.layer + "-" + feat.latent] = feat;
+        }
+
+        const overlayText = document.getElementById("overlay-text");
+        const exampleList = document.getElementById("example-list");
+
+        const onClick = (eventData) => {
+          if (!eventData || !eventData.points || !eventData.points.length) return;
+          const pt = eventData.points[0];
+          const layerIdx = heatmap.layers[pt.y];
+          const latentIdx = pt.x;
+          const feat = featureByKey[layerIdx + "-" + latentIdx];
+          if (!feat) return;
+
+          overlayText.textContent =
+            "Layer " + layerIdx + ", latent " + latentIdx + ": " + feat.explanation;
+
+          exampleList.innerHTML = "";
+          const examples = (feat.detection || []).slice(0, 5);
+          for (const ex of examples) {
+            const li = document.createElement("li");
+            const prefix = ex.correct ? "✓ " : "✗ ";
+            li.textContent = prefix + ex.text;
+            exampleList.appendChild(li);
+          }
+        };
+
+        document.getElementById("top-heatmap").on("plotly_click", onClick);
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById("overlay-text").textContent =
+          "Failed to load dashboard data.";
+      });
+  </script>
+</body>
+</html>
